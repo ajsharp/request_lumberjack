@@ -19,7 +19,7 @@ module RequestLumberjack
       end
 
       def create_from_response(response)
-        create_from_rails_response(response) if defined? Rails
+        create_from_rails_response(response) if defined?(RAILS_ENV)
       end
     end
 
