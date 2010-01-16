@@ -13,7 +13,7 @@ module RequestLumberjack
   end
 
   class App
-    def initialize(app, opts = {})
+    def initialize(app)
       @app = app
     end
 
