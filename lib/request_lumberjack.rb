@@ -1,8 +1,6 @@
 $:.unshift(File.dirname(__FILE__))
 Bundler.require_env
 
-require "vendor/gems/environment"
-
 require 'request_lumberjack/config'
 require 'request_lumberjack/logged_response'
 
