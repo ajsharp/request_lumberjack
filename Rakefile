@@ -11,6 +11,10 @@ begin
     gem.homepage = "http://github.com/ajsharp/request_lumberjack"
     gem.authors = ["Alex Sharp"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_development_dependency 'actionpack',       '2.3.5'
+    gem.add_dependency 'do_sqlite3',     '0.10.0'
+    gem.add_dependency 'dm-core',        '0.10.1'
+    gem.add_dependency 'dm-validations', '0.10.1'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
