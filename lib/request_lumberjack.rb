@@ -19,6 +19,7 @@ module RequestLumberjack
 
     def call(env)
       status, headers, response = @app.call(env)
+      Thread.new { LoggedResponse.create_from_response(response) }
       [status, headers, response]
     end
   end
