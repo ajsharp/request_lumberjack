@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex Sharp"]
   s.date = %q{2010-01-16}
-  s.description = %q{A simple request logger to be used Rails and other Rack apps.}
+  s.description = %q{A simple request logger to be used with Rails and other Rack apps.}
   s.email = %q{ajsharp@gmail.com}
   s.executables = ["autospec", "autotest", "cucumber", "edit_json.rb", "htmldiff", "launchy", "ldiff", "multigem", "multiruby", "multiruby_setup", "nokogiri", "parse_tree_abc", "parse_tree_audit", "parse_tree_deps", "parse_tree_show", "prettify_json.rb", "rackup", "rake", "rcov", "shotgun", "spec", "tt", "unit_diff", "zentest"]
   s.extra_rdoc_files = [
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
      "lib/request_lumberjack.rb",
      "lib/request_lumberjack/config.rb",
      "lib/request_lumberjack/logged_response.rb",
+     "request_lumberjack.gemspec",
      "spec/app_spec.rb",
      "spec/config_spec.rb",
      "spec/logged_response_spec.rb",
@@ -40,7 +41,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{A simple request logger to be used Rails and other Rack apps.}
+  s.summary = %q{A simple request logger to be used with Rails and other Rack apps.}
   s.test_files = [
     "spec/app_spec.rb",
      "spec/config_spec.rb",
