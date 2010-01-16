@@ -1,6 +1,11 @@
-= request_lumberjack
+= Request Lumberjack: Because flat log files blow
 
-Description goes here.
+This is a simple middleware for saving arbitrary
+information pertaining to requests and responses in your rack-based web
+apps. 
+
+Currently it only supports rails, but I plan to add support for plain 
+rack apps.
 
 == Note on Patches/Pull Requests
  
@@ -14,4 +19,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2009 Alex Sharp. See LICENSE for details.
+Copyright (c) 2010 Alex Sharp. See LICENSE for details.
