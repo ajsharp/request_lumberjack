@@ -1,8 +1,10 @@
 require 'spec_helper'
+require 'action_controller'
 
 describe RequestLumberjack::App, "#call" do
   before :each do
-    @env = lambda { |env| [200, {}, "body"] }
+    response = get_rails_response
+    @env = lambda { |env| [200, {}, response] }
     @rl = RequestLumberjack::App.new(@env)
   end
 

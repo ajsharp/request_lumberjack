@@ -45,22 +45,15 @@ module RequestLumberjack
 
   describe LoggedResponse, ".create_from_response" do
     it "should recognize a rails response" do
-      class Rails; end
+      RAILS_ENV = 'something'
       LoggedResponse.should_receive(:create_from_rails_response)
       LoggedResponse.create_from_response("RESPONSE")
     end
   end
 
   describe LoggedResponse, ".create_from_rails_response" do
-    def setup_response
-      env = { 'REQUEST_METHOD' => 'GET', 'REQUEST_URI' => 'http://example.com/controller/action' }
-      @request  = ActionController::Request.new env
-      @response = ActionController::Response.new
-      @response.request = @request
-    end
-
     before :each do
-      setup_response
+      @response = get_rails_response
       @logged_response = LoggedResponse.create_from_rails_response @response
     end
 
