@@ -1,6 +1,9 @@
 
 module RequestLumberjack
+  
   class LoggedResponse
+    class InvalidArgumentError < StandardError; end
+    
     include DataMapper::Resource
 
     property :id,             Serial

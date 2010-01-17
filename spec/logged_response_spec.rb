@@ -49,16 +49,11 @@ module RequestLumberjack
       LoggedResponse.should_receive(:create_from_rails_response)
       LoggedResponse.create_from_response("RESPONSE")
     end
-  end
-
-  describe LoggedResponse, ".create_from_rails_response" do
-    before :each do
-      @response = get_rails_response
-      @logged_response = LoggedResponse.create_from_rails_response @response
-    end
-
-    it "should save a new response" do
-      @logged_response.should_not be_new
+    
+    it "should raise an error if params is not a hash" do
+      lambda {
+        LoggedResponse.create_from_response_params([])
+      }.should raise_error(LoggedResponse::InvalidArgumentError)
     end
 
     it "should save the response code" do
