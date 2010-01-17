@@ -1,21 +1,20 @@
-= Request Lumberjack: Because flat log files blow
+= Request Lumberjack: Because flat log files suck
 
-This is a simple middleware for saving arbitrary
-information pertaining to requests and responses in your rack-based web
-apps. 
+This is a simple RESTful sinatra app for saving arbitrary response data.
 
-Currently it only supports rails, but I plan to add support for plain 
-rack apps.
+== General Usage
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+To create a new record, simply send a POST request to the root endpoint with 
+the following params:
+* Response status code (e.g 200)
+* Request uri
+* Request method
+
+There is planned support to allow saving arbitrary fields in JSON.
+
+For convenience, there is also a GET endpoint at the root url which is to 
+view logged responses.
+
 
 == Copyright
 
