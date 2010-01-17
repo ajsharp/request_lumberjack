@@ -43,11 +43,9 @@ module RequestLumberjack
     end
   end
 
-  describe LoggedResponse, ".create_from_response" do
-    it "should recognize a rails response" do
-      RAILS_ENV = 'something'
-      LoggedResponse.should_receive(:create_from_rails_response)
-      LoggedResponse.create_from_response("RESPONSE")
+  describe LoggedResponse, ".create_from_response_params" do
+    before(:each) do
+      @params = { 'status' => 200, 'request_uri' => '/', 'request_method' => 'get', 'bad' => 'dont save' }
     end
     
     it "should raise an error if params is not a hash" do
@@ -55,17 +53,19 @@ module RequestLumberjack
         LoggedResponse.create_from_response_params([])
       }.should raise_error(LoggedResponse::InvalidArgumentError)
     end
-
-    it "should save the response code" do
-      @logged_response.status.should == 200
+    
+    it "should save the response paramaters" do
+      LoggedResponse.create_from_response_params(@params).should == true
     end
-
-    it "should save the request method" do
-      @logged_response.request_method.should == "get"
+    
+    it "should return false on an unsuccessful save" do
+      LoggedResponse.create_from_response_params({}).should == false
     end
-
-    it "should save the request uri" do
-      @logged_response.request_uri.should == "/controller/action"
+    
+    it "should only attempt to save accepted params" do
+      lambda {
+        LoggedResponse.create_from_response_params(@params) 
+      }.should_not raise_error(ArgumentError)
     end
   end
 
