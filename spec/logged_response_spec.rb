@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'action_controller'
 
 module RequestLumberjack
   describe LoggedResponse do
