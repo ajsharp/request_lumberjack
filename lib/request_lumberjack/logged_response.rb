@@ -15,17 +15,16 @@ module RequestLumberjack
     property :user_id,        Integer
 
     class << self
-      def create_from_rails_response(response)
-        logged_request = LoggedResponse.create(
-          :request_uri    => response.request.request_uri,
-          :status         => response.status,
-          :request_method => response.request.request_method
-        )
+      def create_from_response_params(params)
+        raise InvalidArgumentError unless params.is_a? Hash
+        
+        LoggedResponse.new(cleanse_params(params)).save
       end
-
-      def create_from_response(response)
-        create_from_rails_response(response) if defined?(RAILS_ENV)
-      end
+      
+      protected
+        def cleanse_params(params)
+          params.select {|k,v| ['status', 'request_method', 'request_uri'].include? k }
+        end
     end
 
   end
