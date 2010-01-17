@@ -1,39 +1,37 @@
 require 'spec_helper'
-require 'action_controller'
+#require 'action_controller'
+
 
 module RequestLumberjack
-
   describe App do
-    it "should accept a configuration file path" do
+    it "act like a rack app" do
       env = lambda { |env| [200, {}, "body"] }
       @app = App.new(env)
     end
   end
 
-  describe App, "when being invoked from rails" do
-    before :all do
-      RAILS_ENV='development' unless defined?(RAILS_ENV)
+  describe App, "POST /?" do
+    it "should post correctly" do
+      post '/'
+      response.status.should == 201
     end
 
-    before :each do
-      @response = get_rails_response
-      @env = lambda { |env| [200, @response.headers, @response] }
-      @app = App.new(@env)
-    end
-
-    it "should attempt to save a new response" do
-      LoggedResponse.should_receive(:create_from_response)
-      @app.call(@env)
-    end
-
-    it "should attempt to save a new rails response" do
-      LoggedResponse.should_receive(:create_from_rails_response)
-      @app.call(@response)
-    end
-
-    it "should return a successfull response" do
-      @app.call(@response)[0].should == 200
+    it "should attempt to save a response" do
+      LoggedResponse.should_receive(:create_from_response_params)
+      post '/'
     end
   end
-
+  
+  describe App, "GET /?" do
+    it "should be successful" do
+      get '/'
+      response.status.should == 200
+    end
+    
+    it "should display a collection of logged responses" do
+      LoggedResponse.should_receive(:all)
+      get '/'
+    end
+  end
 end
+
