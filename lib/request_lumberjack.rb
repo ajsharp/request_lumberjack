@@ -1,11 +1,12 @@
-$:.unshift(File.dirname(__FILE__))
+require 'sinatra/base'
+require 'haml/util'
+require 'haml/engine'
 
-require 'rubygems'
-require 'dm-core'
-require 'dm-validations'
+$:.unshift(File.dirname(__FILE__))
 
 require 'request_lumberjack/config'
 require 'request_lumberjack/logged_response'
+require 'request_lumberjack/app'
 
 module RequestLumberjack
 
@@ -13,15 +14,12 @@ module RequestLumberjack
     Config.database db_uri
   end
 
-  class App
-    def initialize(app)
-      @app = app
-    end
-
-    def call(env)
-      status, headers, response = @app.call(env)
-      Thread.new { LoggedResponse.create_from_response(response) }
-      [status, headers, response]
+  def self.app
+    @app ||= Rack::Builder.new do
+      # use Rack::HoptoadNotifier 'mysecretkey' 
+      # use Rack::Session::Cookie, :key => 'rack.session', :path => '/',
+      #  :expire_after => 2592000, :secret => '127edea6d9bbe0568a9882462bc47432fb4692b0'
+      run RequestLumberjack::App
     end
   end
 
