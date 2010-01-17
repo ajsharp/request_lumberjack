@@ -12,9 +12,6 @@ the following params:
 
 There is planned support to allow saving arbitrary fields in JSON.
 
-For convenience, there is also a GET endpoint at the root url which is to 
-view logged responses.
-
 
 == Copyright
 
