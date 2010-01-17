@@ -1,3 +1,5 @@
+require 'dm-core'
+require 'dm-validations'
 
 module RequestLumberjack
   
