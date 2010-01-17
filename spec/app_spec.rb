@@ -3,6 +3,7 @@ require 'spec_helper'
 
 
 module RequestLumberjack
+
   describe App do
     it "act like a rack app" do
       env = lambda { |env| [200, {}, "body"] }
@@ -22,16 +23,5 @@ module RequestLumberjack
     end
   end
   
-  describe App, "GET /?" do
-    it "should be successful" do
-      get '/'
-      response.status.should == 200
-    end
-    
-    it "should display a collection of logged responses" do
-      LoggedResponse.should_receive(:all)
-      get '/'
-    end
-  end
 end
 
