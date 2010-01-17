@@ -41,5 +41,9 @@ Spec::Runner.configure do |config|
   def response
     last_response
   end
+
+  def valid_params
+    { 'request_method' => 'get', 'request_uri' => '/', 'status' => 200 }
+  end
   
 end
