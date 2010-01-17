@@ -1,0 +1,6 @@
+%h1 Showing all logs...
+
+- unless @logs.nil?
+  %ul
+    - @logs.each do |log|
+      %li="#{log.request_method} #{log.request_uri} #{log.status}"
