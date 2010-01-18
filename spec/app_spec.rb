@@ -35,6 +35,13 @@ module RequestLumberjack
       post '/', {  }
     end
   end
+
+  describe App, "GET /?" do
+    it "should be successful" do
+      get '/'
+      response.status.should == 200
+    end
+  end
   
 end
 

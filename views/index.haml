@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title="#{Date.today.strftime} | Requests"
+  %body
+
+    - unless @logs.nil?
+      %table
+        %th Method
+        %th Request URI
+        %th Status
+        %th Extra fields
+        %th Created
+        - @logs.each do |log|
+          %tr
+            %td=log.request_method.upcase
+            %th=log.request_uri
+            %th=log.status
+            %th=log.extra_fields.to_json
+            %th=log.created_at
