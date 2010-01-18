@@ -41,6 +41,11 @@ module RequestLumberjack
       get '/'
       response.status.should == 200
     end
+
+    it "should only find todays responses" do
+      LoggedResponse.should_receive(:find_todays_responses)
+      get '/'
+    end
   end
   
 end

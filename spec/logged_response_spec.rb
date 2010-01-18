@@ -69,5 +69,27 @@ module RequestLumberjack
 
   end
 
+  describe LoggedResponse, ".find_todays_responses" do
+    before :each do
+      @yesterday = LoggedResponse.new valid_params({ 'created_at' => (DateTime.now-1) })
+      @yesterday.save
+      LoggedResponse.create valid_params
+    end
+
+    it "only return today's responses" do
+      LoggedResponse.find_todays_responses.size.should == 1
+    end
+
+    it "should not return yesterday's responses" do
+      LoggedResponse.find_todays_responses.should_not include @yesterday
+    end
+
+    it "should include today's responses" do
+      today = LoggedResponse.create valid_params
+      LoggedResponse.find_todays_responses.size.should == 2
+      LoggedResponse.find_todays_responses.should include today
+    end
+  end
+
 
 end

@@ -6,7 +6,7 @@ module RequestLumberjack
 
     get '/?' do
       headers "Content-Type" => "text/html; charset=utf8"
-      @logs = LoggedResponse.all
+      @logs = LoggedResponse.find_todays_responses
       haml :index
     end
 
