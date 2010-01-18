@@ -9,7 +9,7 @@ gem 'do_sqlite3',         '>=0.10.0'
 gem 'dm-core',            '>=0.10.1'
 gem 'dm-validations',     '>=0.10.1'
 gem 'dm-timestamps',      '>=0.10.1'
-gem 'dm-types',           '0.10.2'
+gem 'dm-types',           '0.10.2', :require_as => 'dm-types/json'
 
 only :test do
   gem 'rake'
