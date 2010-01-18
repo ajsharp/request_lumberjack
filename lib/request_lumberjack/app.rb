@@ -1,13 +1,10 @@
 module RequestLumberjack
   class App < Sinatra::Base
     set :root,   File.dirname(__FILE__)
-    set :static, true
     set :logging, true
 
     post '/?' do
-      status 201
-
-      LoggedResponse.create_from_response_params(params)
+      LoggedResponse.new(params).save ? halt(201) : halt(422)
     end
   end
 end
