@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'action_controller'
 
 describe RequestLumberjack::App, "#call" do
   before :each do
