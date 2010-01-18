@@ -5,7 +5,6 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'rack/test'
 require 'request_lumberjack'
-require 'action_controller'
 
 Webrat.configure do |config|
   config.mode = :rack
